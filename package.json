@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/napi-bindings/go-napi-sys-builder/issues"
   },
-  "homepage": "https://github.com/napi-bindings/go-napi-sys-builder#readme"
+  "homepage": "https://github.com/napi-bindings/go-napi-sys-builder#readme",
+  "dependencies": {
+    "got": "^9.6.0",
+    "pump": "^3.0.0",
+    "rimraf": "^2.6.3",
+    "tar": "^4.4.10"
+  }
 }
