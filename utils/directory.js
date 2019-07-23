@@ -20,10 +20,16 @@ function errOnMakeDir(err) {
 function makeMkDir(path, options) {
     return function mkDir() {
         console.log('called mkDir')
-        return mkdir(path, options)
+        return mkdir(path, options).catch(errOnMakeDir)
     }
 }
 
+function makeMkDirs(optObjs) {
+    const makers = optObjs.map(obj => makeMkDir(obj.path, obj.options))
+    return function mkDirs() {
+        return Promise.all(makers.map(maker => maker()))
+    }
+}
 
 // Cleaner
 
@@ -56,6 +62,7 @@ function makeCleanDirectories(paths) {
 
 module.exports = {
     makeMkDir,
+    makeMkDirs,
     errOnMakeDir,
     makeCleanDirectory,
     makeCleanDirectories
